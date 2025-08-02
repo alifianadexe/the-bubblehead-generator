@@ -128,8 +128,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-                Transform your profile picture with our space helmet design and
-                become a Bubblehead!
+                Transform your profile picture to become a Bubblehead!
               </p>
             </div>
 
@@ -289,7 +288,7 @@ export default function Home() {
                 >
                   The Bubbleheads
                 </a>{" "}
-                • Create your space avatar today
+                • Join The Bubbleheads cult Today!
               </p>
             </div>
           </div>

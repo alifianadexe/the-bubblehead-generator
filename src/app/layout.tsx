@@ -6,8 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "The BubbleHeads",
-  description:
-    "Transform your profile picture with space helmet design. Join the BubbleHeads ecosystem with your custom helm avatar!",
+  description: "Transform your profile picture to become a Bubblehead!!",
   keywords: [
     "profile picture",
     "avatar generator",
