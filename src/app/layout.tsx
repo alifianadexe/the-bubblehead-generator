@@ -5,14 +5,14 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "JupFluencer Helm Generator",
+  title: "The BubbleHeads",
   description:
-    "Transform your profile picture with space helmet design. Join the Jupiter ecosystem with your custom helm avatar!",
+    "Transform your profile picture with space helmet design. Join the BubbleHeads ecosystem with your custom helm avatar!",
   keywords: [
     "profile picture",
     "avatar generator",
     "space helmet",
-    "jupiter",
+    "bubbleheads",
     "solana",
   ],
   icons: {

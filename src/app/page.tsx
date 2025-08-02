@@ -58,7 +58,7 @@ export default function Home() {
 
     const link = document.createElement("a");
     link.href = `data:image/png;base64,${generatedImage}`;
-    link.download = `jupfluencer-helm-${Date.now()}.png`;
+    link.download = `bubbleheads-helmet-${Date.now()}.png`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -77,7 +77,7 @@ export default function Home() {
             </div>
 
             <h3 className="text-xl font-semibold text-slate-100 mb-4">
-              Generating Your Helm Avatar
+              Generating Your Bubblehead Avatar
             </h3>
 
             <p className="text-slate-300 mb-2">
@@ -113,13 +113,13 @@ export default function Home() {
             <div className="relative w-12 h-12">
               <Image
                 src="/logo.png"
-                alt="JupFluencer Logo"
+                alt="The Bubbleheads Logo"
                 fill
                 className="object-contain rounded-lg"
               />
             </div>
             <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-              JupFluencer Helm Generator
+              The Bubbleheads
             </h1>
           </div>
         </header>
@@ -129,7 +129,7 @@ export default function Home() {
             <div className="text-center mb-12">
               <p className="text-xl text-slate-300 max-w-2xl mx-auto">
                 Transform your profile picture with our space helmet design and
-                join the Jupiter ecosystem!
+                become a Bubblehead!
               </p>
             </div>
 
@@ -200,7 +200,7 @@ export default function Home() {
                     disabled={!selectedFile || isLoading}
                     className="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 text-white py-3 px-6 rounded-lg font-semibold hover:from-emerald-600 hover:to-cyan-600 disabled:from-slate-600 disabled:to-slate-600 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-emerald-500/25"
                   >
-                    Generate Helm Profile
+                    Generate Bubblehead Profile
                   </button>
 
                   {error && (
@@ -232,7 +232,7 @@ export default function Home() {
                           disabled={isLoading}
                           className="bg-gradient-to-r from-cyan-500 to-emerald-500 text-white py-2 px-6 rounded-lg font-semibold hover:from-cyan-600 hover:to-emerald-600 transition-all duration-200 shadow-lg hover:shadow-cyan-500/25 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
-                          Download Helm Avatar
+                          Download Bubblehead Avatar
                         </button>
                       </div>
                     ) : (
@@ -252,7 +252,7 @@ export default function Home() {
                             />
                           </svg>
                         </div>
-                        <p>Your JupFluencer helm avatar will appear here</p>
+                        <p>Your Bubblehead avatar will appear here</p>
                       </div>
                     )}
                   </div>
@@ -280,7 +280,7 @@ export default function Home() {
             {/* Footer */}
             <div className="text-center mt-12">
               <p className="text-slate-400 text-sm">
-                Powered by Jupiter ecosystem • Create your space avatar today
+                Powered by The Bubbleheads • Create your space avatar today
               </p>
             </div>
           </div>
