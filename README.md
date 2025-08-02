@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# JupFluencer Helm Generator
+
+Transform your profile picture with our space helmet design and join the Jupiter ecosystem! This Next.js application combines user-uploaded images with a static helmet design using OpenAI's image editing API.
+
+## Features
+
+- 🚀 Upload your profile picture
+- 🪐 Automatic combination with space helmet design
+- ⚡ Powered by OpenAI's DALL-E image editing
+- 💫 Jupiter-inspired dark theme
+- 📱 Responsive design
+- ⬇️ Download your generated helm avatar
+
+## Tech Stack
+
+- **Next.js 15** with App Router
+- **TypeScript** for type safety
+- **Tailwind CSS** for styling
+- **OpenAI API** for image generation
+- **File Upload** handling for images
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js 18+ installed
+- OpenAI API key
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd auto-generate-picture
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   ```bash
+   cp .env.example .env.local
+   ```
+   
+   Add your OpenAI API key to `.env.local`:
+   ```
+   OPENAI_API_KEY=your_openai_api_key_here
+   ```
+
+4. Make sure you have the helmet.png file in the `/public` directory
+
+5. Add your logo.jpg file to the `/public` directory
+
+6. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+7. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## How It Works
+
+1. **Upload**: Users upload their profile picture
+2. **Process**: The image is sent to OpenAI's DALL-E API along with the helmet design
+3. **Generate**: AI combines the user's photo with the space helmet
+4. **Download**: Users can download their new JupFluencer helm avatar
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── api/
+│   │   └── generate/
+│   │       └── route.ts          # OpenAI API integration
+│   ├── layout.tsx                # Root layout with metadata
+│   └── page.tsx                  # Main upload and generation UI
+├── lib/
+│   └── openai.ts                 # OpenAI client configuration
+public/
+├── helmet.png                    # Static helmet design
+└── logo.jpg                     # JupFluencer logo
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env.local` file with:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+OPENAI_API_KEY=your_openai_api_key_here
+```
 
-## Learn More
+## API Routes
 
-To learn more about Next.js, take a look at the following resources:
+### POST /api/generate
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Generates a new profile picture by combining the uploaded image with the helmet design.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Request**: FormData with `image` file
+**Response**: JSON with base64 encoded generated image
 
-## Deploy on Vercel
+## Customization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Update the helmet design by replacing `/public/helmet.png`
+- Modify the AI prompt in `/src/app/api/generate/route.ts`
+- Customize the theme colors in the Tailwind classes
+- Add your own logo by replacing `/public/logo.jpg`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+**Join the Jupiter ecosystem with your custom helm avatar!** 🚀
