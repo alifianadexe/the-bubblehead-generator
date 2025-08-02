@@ -63,6 +63,7 @@ export async function POST(request: NextRequest) {
       model: "gpt-image-1",
       image: [userImage, helmetImage],
       prompt: prompt,
+      quality: "medium", // Adjust quality as needed
     });
 
     const imageData = response.data?.[0]?.b64_json;

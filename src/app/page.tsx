@@ -194,8 +194,111 @@ export default function Home() {
                 Transform your profile picture to become a Bubblehead!
               </p>
             </div>
-
             <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-2xl shadow-2xl p-8">
+              {/* Social Links */}
+              <div className="pb-8 mb-8 border-b border-slate-700">
+                <h3 className="text-lg font-semibold text-slate-200 mb-6 text-center">
+                  Find The Bubbleheads on...
+                </h3>
+                <div className="flex justify-center items-center gap-4 md:gap-6 flex-wrap">
+                  {/* Link 1: DYORhub */}
+                  <a
+                    href="https://dyorhub.xyz/tokens/3G1yVFfKzZxsvTnAnJMQzZBtyTpfWUTY6G7685nRjups"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-slate-800/50 hover:bg-slate-700/70 border border-slate-700 rounded-xl p-4 w-20 h-20 flex items-center justify-center transition-colors"
+                    aria-label="DYORhub"
+                  >
+                    <svg
+                      width="40"
+                      height="40"
+                      viewBox="0 0 24 24"
+                      fill="#E2E8F0"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22V2Z" />
+                    </svg>
+                  </a>
+                  {/* Link 2: Axiom */}
+                  <a
+                    href="https://axiom.trade/t/3G1yVFfKzZxsvTnAnJMQzZBtyTpfWUTY6G7685nRjups/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-slate-800/50 hover:bg-slate-700/70 border border-slate-700 rounded-xl p-4 w-20 h-20 flex items-center justify-center transition-colors"
+                    aria-label="Axiom"
+                  >
+                    <svg
+                      width="40"
+                      height="40"
+                      viewBox="0 0 24 24"
+                      fill="#E2E8F0"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M12 4L6 12H18L12 4Z M4 18L6 14H18L20 18H4Z" />
+                    </svg>
+                  </a>
+                  {/* Link 3: gmgn.ai */}
+                  <a
+                    href="https://gmgn.ai/sol/token/eKMpq0u9_3G1yVFfKzZxsvTnAnJMQzZBtyTpfWUTY6G7685nRjups"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-slate-800/50 hover:bg-slate-700/70 border border-slate-700 rounded-xl p-4 w-20 h-20 flex items-center justify-center transition-colors"
+                    aria-label="gmgn.ai"
+                  >
+                    <svg
+                      width="48"
+                      height="48"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style={{ imageRendering: "pixelated" }}
+                    >
+                      <rect x="5" y="4" width="1" height="1" fill="#4ade80" />
+                      <rect x="10" y="4" width="1" height="1" fill="#4ade80" />
+                      <rect x="4" y="5" width="1" height="1" fill="#4ade80" />
+                      <rect x="5" y="5" width="6" height="1" fill="#86efac" />
+                      <rect x="11" y="5" width="1" height="1" fill="#4ade80" />
+                      <rect x="3" y="6" width="1" height="1" fill="#4ade80" />
+                      <rect x="4" y="6" width="8" height="1" fill="#86efac" />
+                      <rect x="12" y="6" width="1" height="1" fill="#4ade80" />
+                      <rect x="2" y="7" width="1" height="1" fill="#4ade80" />
+                      <rect x="3" y="7" width="1" height="1" fill="#86efac" />
+                      <rect x="4" y="7" width="1" height="1" fill="#4ade80" />
+                      <rect x="5" y="7" width="6" height="1" fill="#86efac" />
+                      <rect x="11" y="7" width="1" height="1" fill="#4ade80" />
+                      <rect x="1" y="8" width="1" height="1" fill="#4ade80" />
+                      <rect x="2" y="8" width="1" height="1" fill="#86efac" />
+                      <rect x="3" y="8" width="1" height="1" fill="#4ade80" />
+                      <rect x="4" y="8" width="7" height="1" fill="#86efac" />
+                      <rect x="11" y="8" width="1" height="1" fill="#4ade80" />
+                      <rect x="4" y="9" width="1" height="1" fill="#f97316" />
+                      <rect x="5" y="9" width="5" height="1" fill="#fdba74" />
+                      <rect x="10" y="9" width="1" height="1" fill="#f97316" />
+                      <rect x="5" y="10" width="1" height="1" fill="#f97316" />
+                      <rect x="6" y="10" width="3" height="1" fill="#fdba74" />
+                      <rect x="9" y="10" width="1" height="1" fill="#f97316" />
+                    </svg>
+                  </a>
+                  {/* Link 4: DexScreener */}
+                  <a
+                    href="https://dexscreener.com/solana/dufuudxe8eh663dfwx16n8lufcanyeseqwgvodoshzxc"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-slate-800/50 hover:bg-slate-700/70 border border-slate-700 rounded-xl p-4 w-20 h-20 flex items-center justify-center transition-colors"
+                    aria-label="DexScreener"
+                  >
+                    <svg
+                      width="40"
+                      height="40"
+                      viewBox="0 0 24 24"
+                      fill="#E2E8F0"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M12 8.5L9.0625 12.375H14.9375L12 8.5ZM7.5 9.375C6.80964 9.375 6.25 9.93464 6.25 10.625C6.25 11.3154 6.80964 11.875 7.5 11.875C8.19036 11.875 8.75 11.3154 8.75 10.625C8.75 9.93464 8.19036 9.375 7.5 9.375ZM16.5 9.375C15.8096 9.375 15.25 9.93464 15.25 10.625C15.25 11.3154 15.8096 11.875 16.5 11.875C17.1904 11.875 17.75 11.3154 17.75 10.625C17.75 9.93464 17.1904 9.375 16.5 9.375ZM4.375 20L7.5 16.25L9.375 18.75L12 15.625L14.625 18.75L16.5 16.25L19.625 20H4.375Z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
               <div className="grid md:grid-cols-2 gap-8">
                 {/* Upload Section */}
                 <div className="space-y-6">
@@ -368,21 +471,23 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Footer */}
-            <div className="text-center mt-12">
-              <p className="text-slate-400 text-sm">
-                Powered by{" "}
-                <a
-                  href="https://x.com/TheBubble_Heads"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-emerald-400 hover:text-emerald-300 transition-colors underline decoration-emerald-400/30 hover:decoration-emerald-300/50"
-                >
-                  The Bubbleheads
-                </a>{" "}
-                • Join The Bubbleheads cult Today!
-              </p>
-            </div>
+            {/* Social Links */}
+          </div>
+
+          {/* Footer */}
+          <div className="text-center mt-12">
+            <p className="text-slate-400 text-sm">
+              Powered by{" "}
+              <a
+                href="https://x.com/TheBubble_Heads"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-emerald-400 hover:text-emerald-300 transition-colors underline decoration-emerald-400/30 hover:decoration-emerald-300/50"
+              >
+                The Bubbleheads
+              </a>{" "}
+              • Join The Bubbleheads cult Today!
+            </p>
           </div>
         </div>
       </div>
