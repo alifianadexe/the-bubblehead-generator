@@ -64,6 +64,69 @@ export default function Home() {
     document.body.removeChild(link);
   };
 
+  const handleImagePress = () => {
+    if (!generatedImage) return;
+
+    // For mobile devices, try to trigger download
+    if (
+      navigator.userAgent.match(
+        /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+      )
+    ) {
+      // Create a temporary canvas to convert base64 to blob
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      const img = new window.Image();
+
+      img.onload = () => {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx?.drawImage(img, 0, 0);
+
+        canvas.toBlob((blob) => {
+          if (blob) {
+            // Try to use the Web Share API if available (mobile browsers)
+            if (
+              navigator.share &&
+              navigator.canShare &&
+              navigator.canShare({
+                files: [
+                  new File([blob], "bubblehead-avatar.png", {
+                    type: "image/png",
+                  }),
+                ],
+              })
+            ) {
+              const file = new File(
+                [blob],
+                `bubbleheads-helmet-${Date.now()}.png`,
+                { type: "image/png" }
+              );
+              navigator
+                .share({
+                  files: [file],
+                  title: "My Bubblehead Avatar",
+                  text: "Check out my new Bubblehead avatar!",
+                })
+                .catch(() => {
+                  // Fallback to download if share fails
+                  downloadImage();
+                });
+            } else {
+              // Fallback to regular download
+              downloadImage();
+            }
+          }
+        }, "image/png");
+      };
+
+      img.src = `data:image/png;base64,${generatedImage}`;
+    } else {
+      // Desktop - just download
+      downloadImage();
+    }
+  };
+
   return (
     <>
       {/* Full-page loading overlay */}
@@ -128,7 +191,7 @@ export default function Home() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
               <p className="text-xl text-slate-300 max-w-2xl mx-auto">
-                Transform your profile picture to become a Bubblehead!
+                Transform your profile picture to become a Bubblehead!
               </p>
             </div>
 
@@ -218,14 +281,43 @@ export default function Home() {
                   <div className="border-2 border-slate-600 rounded-lg p-8 text-center min-h-[300px] flex items-center justify-center bg-slate-900/50">
                     {generatedImage ? (
                       <div className="space-y-4">
-                        <div className="relative w-64 h-64 mx-auto">
+                        <div
+                          className="relative w-64 h-64 mx-auto cursor-pointer group"
+                          onClick={handleImagePress}
+                          role="button"
+                          tabIndex={0}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                              handleImagePress();
+                            }
+                          }}
+                          aria-label="Tap to save image"
+                        >
                           <Image
                             src={`data:image/png;base64,${generatedImage}`}
                             alt="Generated profile"
                             fill
-                            className="object-cover rounded-lg border-2 border-emerald-400/50 shadow-lg shadow-emerald-500/25"
+                            className="object-cover rounded-lg border-2 border-emerald-400/50 shadow-lg shadow-emerald-500/25 group-hover:border-emerald-400 transition-all duration-200"
                           />
+                          {/* Mobile tap indicator */}
+                          <div className="md:hidden absolute inset-0 bg-black/20 rounded-lg opacity-0 group-active:opacity-100 transition-opacity duration-150 flex items-center justify-center">
+                            <div className="bg-emerald-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                              Tap to Save
+                            </div>
+                          </div>
+                          {/* Desktop hover indicator */}
+                          <div className="hidden md:flex absolute inset-0 bg-black/0 group-hover:bg-black/20 rounded-lg transition-all duration-200 items-center justify-center opacity-0 group-hover:opacity-100">
+                            <div className="bg-emerald-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                              Click to Save
+                            </div>
+                          </div>
                         </div>
+
+                        {/* Mobile hint text */}
+                        <p className="text-xs text-slate-400 md:hidden">
+                          Tap the image above to save
+                        </p>
+
                         <button
                           onClick={downloadImage}
                           disabled={isLoading}
@@ -247,7 +339,7 @@ export default function Home() {
                               strokeLinecap="round"
                               strokeLinejoin="round"
                               strokeWidth={2}
-                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z"
                             />
                           </svg>
                         </div>
@@ -288,7 +380,7 @@ export default function Home() {
                 >
                   The Bubbleheads
                 </a>{" "}
-                • Join The Bubbleheads cult Today!
+                • Join The Bubbleheads cult Today!
               </p>
             </div>
           </div>
