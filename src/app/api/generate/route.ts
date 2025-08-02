@@ -24,20 +24,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Convert uploaded file to buffer
+    // Convert uploaded file to buffer (no file system write)
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Save uploaded file temporarily
-    const tempDir = path.join(process.cwd(), "temp");
-    if (!fs.existsSync(tempDir)) {
-      fs.mkdirSync(tempDir, { recursive: true });
-    }
-
-    const tempFilePath = path.join(tempDir, `upload-${Date.now()}.png`);
-    fs.writeFileSync(tempFilePath, buffer);
-
-    // Get helmet image path
+    // Get helmet image from public directory
     const helmetPath = path.join(process.cwd(), "public", "helmet.png");
 
     if (!fs.existsSync(helmetPath)) {
@@ -47,15 +38,18 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const imageFiles = [tempFilePath, helmetPath];
-    const images = await Promise.all(
-      imageFiles.map(
-        async (filePath) =>
-          await toFile(fs.createReadStream(filePath), path.basename(filePath), {
-            type: "image/png",
-          })
-      )
-    );
+    // Read helmet image to buffer
+    const helmetBuffer = fs.readFileSync(helmetPath);
+
+    const imageFiles = [helmetBuffer, helmetPath];
+    // Convert buffers to OpenAI File objects
+    const userImage = await toFile(buffer, "user-image.png", {
+      type: "image/png",
+    });
+
+    const helmetImage = await toFile(helmetBuffer, "helmet.png", {
+      type: "image/png",
+    });
 
     const prompt = `
     Put the character from the profile picture inside the helmet image. 
@@ -67,12 +61,9 @@ export async function POST(request: NextRequest) {
     // Use OpenAI to edit the image
     const response = await openai.images.edit({
       model: "gpt-image-1",
-      image: images,
+      image: [userImage, helmetImage],
       prompt: prompt,
     });
-
-    // Clean up temporary file
-    fs.unlinkSync(tempFilePath);
 
     const imageData = response.data?.[0]?.b64_json;
 

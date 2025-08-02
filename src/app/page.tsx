@@ -280,7 +280,16 @@ export default function Home() {
             {/* Footer */}
             <div className="text-center mt-12">
               <p className="text-slate-400 text-sm">
-                Powered by The Bubbleheads • Create your space avatar today
+                Powered by{" "}
+                <a
+                  href="https://x.com/TheBubble_Heads"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-emerald-400 hover:text-emerald-300 transition-colors underline decoration-emerald-400/30 hover:decoration-emerald-300/50"
+                >
+                  The Bubbleheads
+                </a>{" "}
+                • Create your space avatar today
               </p>
             </div>
           </div>
