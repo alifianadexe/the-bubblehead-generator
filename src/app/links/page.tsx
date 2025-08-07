@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 interface Star {
@@ -80,137 +79,143 @@ export default function LinksPage() {
       />
 
       {/* Content Overlay */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen p-4">
-        {/* Logo and Title */}
-        <div className="text-center mb-12">
-          <div className="relative w-32 h-32 mx-auto mb-6">
-            <Image
+      <div className="relative z-10 min-h-screen p-8 md:p-16 flex items-center justify-center">
+        {/* Centered content matching the image */}
+        <div className="text-center max-w-4xl">
+          {/* Logo Section */}
+          <div className="mb-8">
+            <img
               src="/logo.png"
-              alt="The Bubbleheads Logo"
-              fill
-              className="object-contain"
+              alt="Bubbleheads Logo"
+              className="w-20 h-20 md:w-24 md:h-24 mx-auto mb-4 object-contain"
             />
+            <h1
+              className="text-2xl md:text-3xl font-bold text-white mb-2"
+              style={{ fontFamily: "Orbitron, sans-serif" }}
+            >
+              BUBBLEHEADS
+            </h1>
+            <h2
+              className="text-sm md:text-base text-white mb-8"
+              style={{ fontFamily: "Orbitron, sans-serif" }}
+            >
+              The Bubbleheads Station
+            </h2>
           </div>
-          <h1
-            className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-wider"
-            style={{ fontFamily: "Orbitron, sans-serif" }}
-          >
-            THE BUBBLEHEADS
-          </h1>
-          <p className="text-emerald-400 text-lg tracking-wide">
-            🌌 Welcome to the Bubbleverse 🌌
-          </p>
-        </div>
 
-        {/* Links Container - Simple List Style */}
-        <div className="text-center">
-          <Link
-            href="/"
-            className="block my-2 text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300 no-underline"
-            style={{ fontFamily: "Orbitron, sans-serif" }}
-          >
-            🚀 Avatar Generator
-          </Link>
+          {/* Website Section */}
+          <div className="mb-8">
+            <h3
+              className="text-2xl md:text-3xl font-bold text-yellow-300 mb-3"
+              style={{ fontFamily: "Orbitron, sans-serif" }}
+            >
+              Website
+            </h3>
+            <Link
+              href="https://bubbleverse.online/"
+              className="text-lg md:text-xl text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300 block"
+              style={{ fontFamily: "Orbitron, sans-serif" }}
+            >
+              🚀 Avatar Generator
+            </Link>
+          </div>
 
-          <a
-            href="https://x.com/TheBubble_Heads"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block my-2 text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300 no-underline"
-            style={{ fontFamily: "Orbitron, sans-serif" }}
-          >
-            🐦 Follow on X (Twitter)
-          </a>
+          {/* Socials Section */}
+          <div className="mb-8">
+            <h3
+              className="text-2xl md:text-3xl font-bold text-yellow-300 mb-3"
+              style={{ fontFamily: "Orbitron, sans-serif" }}
+            >
+              Socials
+            </h3>
+            <a
+              href="https://x.com/TheBubble_Heads"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lg md:text-xl text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300 block"
+              style={{ fontFamily: "Orbitron, sans-serif" }}
+            >
+              🐦 X (Twitter)
+            </a>
+          </div>
 
-          <a
-            href="https://dyorhub.xyz/tokens/3G1yVFfKzZxsvTnAnJMQzZBtyTpfWUTY6G7685nRjups"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block my-2 text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300 no-underline"
-            style={{ fontFamily: "Orbitron, sans-serif" }}
-          >
-            📊 DYORhub Analytics
-          </a>
+          {/* PFP Generator Section */}
+          <div className="mb-8">
+            <h3
+              className="text-2xl md:text-3xl font-bold text-yellow-300 mb-3"
+              style={{ fontFamily: "Orbitron, sans-serif" }}
+            >
+              PFP Generator
+            </h3>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a
+                href="https://bubbleheads.xyz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-base md:text-lg text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300"
+                style={{ fontFamily: "Orbitron, sans-serif" }}
+              >
+                [ 1 ] Bubbleheads Generator
+              </a>
+              <a
+                href="https://thebubbleheads.xyz/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-base md:text-lg text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300"
+                style={{ fontFamily: "Orbitron, sans-serif" }}
+              >
+                [ 2 ] The Bubbleheads Generator
+              </a>
+            </div>
+          </div>
 
-          <a
-            href="https://axiom.trade/t/3G1yVFfKzZxsvTnAnJMQzZBtyTpfWUTY6G7685nRjups/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block my-2 text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300 no-underline"
-            style={{ fontFamily: "Orbitron, sans-serif" }}
-          >
-            ⚡ Trade on Axiom
-          </a>
-
-          <a
-            href="https://gmgn.ai/sol/token/eKMpq0u9_3G1yVFfKzZxsvTnAnJMQzZBtyTpfWUTY6G7685nRjups"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block my-2 text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300 no-underline"
-            style={{ fontFamily: "Orbitron, sans-serif" }}
-          >
-            🎯 GMGN Analytics
-          </a>
-
-          <a
-            href="https://dexscreener.com/solana/dufuudxe8eh663dfwx16n8lufcanyeseqwgvodoshzxc"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block my-2 text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300 no-underline"
-            style={{ fontFamily: "Orbitron, sans-serif" }}
-          >
-            📈 DexScreener Charts
-          </a>
-
-          <a
-            href="#"
-            className="block my-2 text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300 no-underline"
-            style={{ fontFamily: "Orbitron, sans-serif" }}
-          >
-            💬 Join Discord
-          </a>
-
-          <a
-            href="#"
-            className="block my-2 text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300 no-underline"
-            style={{ fontFamily: "Orbitron, sans-serif" }}
-          >
-            📱 Telegram Channel
-          </a>
-
-          <a
-            href="#"
-            className="block my-2 text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300 no-underline"
-            style={{ fontFamily: "Orbitron, sans-serif" }}
-          >
-            👨‍🚀 Meet the Crew
-          </a>
-
-          <a
-            href="#"
-            className="block my-2 text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300 no-underline"
-            style={{ fontFamily: "Orbitron, sans-serif" }}
-          >
-            🛰️ Space Station Updates
-          </a>
-
-          <a
-            href="#"
-            className="block my-2 text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300 no-underline"
-            style={{ fontFamily: "Orbitron, sans-serif" }}
-          >
-            🪐 Explore the Bubbleverse
-          </a>
-        </div>
-
-        {/* Footer */}
-        <div className="mt-12 text-center">
-          <p className="text-slate-400 text-sm mb-2">
-            🚀 Join the Bubbleheads cult today! 🚀
-          </p>
-          <p className="text-emerald-400 text-xs tracking-wide">
-            ✨ To infinity and beyond ✨
-          </p>
+          {/* Tools Section */}
+          <div className="mb-8">
+            <h3
+              className="text-2xl md:text-3xl font-bold text-yellow-300 mb-3"
+              style={{ fontFamily: "Orbitron, sans-serif" }}
+            >
+              Tools
+            </h3>
+            <div className="space-y-2">
+              <a
+                href="https://dyorhub.xyz/tokens/3G1yVFfKzZxsvTnAnJMQzZBtyTpfWUTY6G7685nRjups"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-sm md:text-base text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300"
+                style={{ fontFamily: "Orbitron, sans-serif" }}
+              >
+                📊 DYORhub Analytics - Token Research & Analysis
+              </a>
+              <a
+                href="https://axiom.trade/t/3G1yVFfKzZxsvTnAnJMQzZBtyTpfWUTY6G7685nRjups/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-sm md:text-base text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300"
+                style={{ fontFamily: "Orbitron, sans-serif" }}
+              >
+                ⚡ Trade on Axiom - DEX Trading Platform
+              </a>
+              <a
+                href="https://gmgn.ai/sol/token/eKMpq0u9_3G1yVFfKzZxsvTnAnJMQzZBtyTpfWUTY6G7685nRjups"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-sm md:text-base text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300"
+                style={{ fontFamily: "Orbitron, sans-serif" }}
+              >
+                💚 GMGN Analytics - Advanced Token Metrics
+              </a>
+              <a
+                href="https://dexscreener.com/solana/dufuudxe8eh663dfwx16n8lufcanyeseqwgvodoshzxc"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-sm md:text-base text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300"
+                style={{ fontFamily: "Orbitron, sans-serif" }}
+              >
+                📈 DexScreener Charts - Real-time Price Data
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
