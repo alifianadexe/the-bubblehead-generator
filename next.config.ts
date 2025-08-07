@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
           has: [
             {
               type: "host",
-              value: "links.bubblehead.xyz",
+              value: "links.bubbleheads.xyz",
             },
           ],
         },
