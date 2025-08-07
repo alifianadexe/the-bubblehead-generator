@@ -6,12 +6,12 @@ const nextConfig: NextConfig = {
       beforeFiles: [
         // Handle subdomain routing for links.thebubblehead.xyz
         {
-          source: '/',
-          destination: '/links',
+          source: "/",
+          destination: "/links",
           has: [
             {
-              type: 'host',
-              value: 'links.thebubblehead.xyz',
+              type: "host",
+              value: "links.bubblehead.xyz",
             },
           ],
         },
