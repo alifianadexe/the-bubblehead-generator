@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -172,18 +173,20 @@ export default function Home() {
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-900">
         {/* Header */}
         <header className="px-4 py-6">
-          <div className="max-w-4xl mx-auto flex items-center justify-center space-x-4">
-            <div className="relative w-12 h-12">
-              <Image
-                src="/logo.png"
-                alt="The Bubbleheads Logo"
-                fill
-                className="object-contain rounded-lg"
-              />
+          <div className="max-w-4xl mx-auto flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div className="relative w-12 h-12">
+                <Image
+                  src="/logo.png"
+                  alt="The Bubbleheads Logo"
+                  fill
+                  className="object-contain rounded-lg"
+                />
+              </div>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                The Bubbleheads
+              </h1>
             </div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-              The Bubbleheads
-            </h1>
           </div>
         </header>
 

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starfield Background</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #0e0e10;
+      overflow: hidden;
+      font-family: 'Orbitron', sans-serif;
+    }
+    canvas {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+    .overlay {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: white;
+      text-align: center;
+    }
+    .logo {
+      width: 150px;
+      margin-bottom: 20px;
+    }
+    .title {
+      font-size: 2em;
+      letter-spacing: 4px;
+      margin-bottom: 30px;
+    }
+    .links a {
+      display: block;
+      margin: 8px;
+      text-decoration: none;
+      color: #3ed09b;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    .links a:hover {
+      color: #f1b847;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bgCanvas"></canvas>
+
+  <div class="overlay">
+    <img src="imgi_1_b03390cb-b5da-4a01-9147-cef3651b5574.png" alt="Bubbleheads Logo" class="logo">
+    <div class="title">BUBBLEHEADS</div>
+    <div class="links">
+      <a href="#">🌌 Intergalactic Portal</a>
+      <a href="#">🚀 Launch Pad</a>
+      <a href="#">👨‍🚀 Meet the Crew</a>
+      <a href="#">🛰️ Space Station Updates</a>
+      <a href="#">🪐 Explore the Bubbleverse</a>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById("bgCanvas");
+      if (!(canvas instanceof HTMLCanvasElement)) return;
+
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      const stars = [];
+      const numStars = 300;
+
+      for (let i = 0; i < numStars; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 1.5 + 0.5,
+          color: Math.random() < 0.15 ? "#f1b847" : "#3ed09b",
+          twinkle: Math.random() * 0.02 + 0.01
+        });
+      }
+
+      function drawStars() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        stars.forEach(star => {
+          star.radius += (Math.random() - 0.5) * star.twinkle;
+          star.radius = Math.max(0.2, Math.min(2.5, star.radius));
+
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+          ctx.fillStyle = star.color;
+          ctx.fill();
+        });
+      }
+
+      function animate() {
+        drawStars();
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    });
+  </script>
+</body>
+</html>
