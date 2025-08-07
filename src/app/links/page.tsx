@@ -99,7 +99,7 @@ export default function LinksPage() {
               className="text-sm md:text-base text-white mb-8"
               style={{ fontFamily: "Orbitron, sans-serif" }}
             >
-              The Bubbleheads Station
+              Station
             </h2>
           </div>
 
@@ -109,15 +109,14 @@ export default function LinksPage() {
               className="text-2xl md:text-3xl font-bold text-yellow-300 mb-3"
               style={{ fontFamily: "Orbitron, sans-serif" }}
             >
-              Website
+              <Link
+                href="https://bubbleverse.online/"
+                className=" font-bold hover:text-amber-400 transition-colors duration-300 block"
+                style={{ fontFamily: "Orbitron, sans-serif" }}
+              >
+                Website
+              </Link>
             </h3>
-            <Link
-              href="https://bubbleverse.online/"
-              className="text-lg md:text-xl text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300 block"
-              style={{ fontFamily: "Orbitron, sans-serif" }}
-            >
-              🚀 Avatar Generator
-            </Link>
           </div>
 
           {/* Socials Section */}
@@ -155,7 +154,7 @@ export default function LinksPage() {
                 className="text-base md:text-lg text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300"
                 style={{ fontFamily: "Orbitron, sans-serif" }}
               >
-                [ 1 ] Bubbleheads Generator
+                [ 1 ]
               </a>
               <a
                 href="https://thebubbleheads.xyz/"
@@ -164,7 +163,7 @@ export default function LinksPage() {
                 className="text-base md:text-lg text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300"
                 style={{ fontFamily: "Orbitron, sans-serif" }}
               >
-                [ 2 ] The Bubbleheads Generator
+                [ 2 ]
               </a>
             </div>
           </div>
