@@ -179,6 +179,15 @@ export default function LinksPage() {
             </h3>
             <div className="space-y-2">
               <a
+                href="https://dexscreener.com/solana/dufuudxe8eh663dfwx16n8lufcanyeseqwgvodoshzxc"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-sm md:text-base text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300"
+                style={{ fontFamily: "Orbitron, sans-serif" }}
+              >
+                📈 DexScreener Charts - Real-time Price Data
+              </a>
+              <a
                 href="https://dyorhub.xyz/tokens/3G1yVFfKzZxsvTnAnJMQzZBtyTpfWUTY6G7685nRjups"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -204,15 +213,6 @@ export default function LinksPage() {
                 style={{ fontFamily: "Orbitron, sans-serif" }}
               >
                 💚 GMGN Analytics - Advanced Token Metrics
-              </a>
-              <a
-                href="https://dexscreener.com/solana/dufuudxe8eh663dfwx16n8lufcanyeseqwgvodoshzxc"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-sm md:text-base text-emerald-400 font-bold hover:text-amber-400 transition-colors duration-300"
-                style={{ fontFamily: "Orbitron, sans-serif" }}
-              >
-                📈 DexScreener Charts - Real-time Price Data
               </a>
             </div>
           </div>
