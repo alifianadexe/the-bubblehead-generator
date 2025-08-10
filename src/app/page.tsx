@@ -13,9 +13,14 @@ export default function Home() {
   const [selectedHelmet, setSelectedHelmet] = useState<string>("helmet.png");
 
   const helmetOptions = [
-    { id: "helmet.png", name: "Classic", preview: "/helmet.png" },
-    { id: "helmet3.png", name: "Elite", preview: "/helmet3.png" },
-    { id: "helmet4.png", name: "Modern", preview: "/helmet4.png" },
+    { id: "helmet.png", name: "Neon", preview: "/helmet.png" },
+    { id: "helmet3.png", name: "Ocean", preview: "/helmet3.png" },
+    { id: "helmet4.png", name: "Dark Neon", preview: "/helmet4.png" },
+    {
+      id: "helmet2.png",
+      name: "JUP",
+      preview: "/helmet2.png",
+    },
   ];
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -472,61 +477,63 @@ export default function Home() {
 
                 {/* Helmet Carousel */}
                 <div className="relative">
-                  <div className="flex gap-6 overflow-x-auto pb-4 px-4 pt-3 scrollbar-thin justify-center min-w-0">
-                    {helmetOptions.map((helmet) => (
-                      <div
-                        key={helmet.id}
-                        className={`flex-shrink-0 relative cursor-pointer transition-all duration-200 ${
-                          selectedHelmet === helmet.id
-                            ? "scale-105"
-                            : "hover:scale-102"
-                        }`}
-                        onClick={() => setSelectedHelmet(helmet.id)}
-                      >
+                  <div className="flex justify-center">
+                    <div className="flex gap-6 overflow-x-auto pb-4 px-4 pt-3 scrollbar-thin min-w-0 max-w-[354px] md:max-w-[454px]">
+                      {helmetOptions.map((helmet) => (
                         <div
-                          className={`relative w-24 h-24 md:w-32 md:h-32 p-3 md:p-4 rounded-xl border-2 transition-all duration-200 ${
+                          key={helmet.id}
+                          className={`flex-shrink-0 relative cursor-pointer transition-all duration-200 ${
                             selectedHelmet === helmet.id
-                              ? "border-emerald-400 bg-gradient-to-br from-emerald-900/30 to-cyan-900/30 shadow-lg shadow-emerald-500/25"
-                              : "border-slate-600 bg-gradient-to-br from-slate-800 to-slate-700 hover:border-slate-500"
+                              ? "scale-105"
+                              : "hover:scale-102"
                           }`}
+                          onClick={() => setSelectedHelmet(helmet.id)}
                         >
-                          <Image
-                            src={helmet.preview}
-                            alt={helmet.name}
-                            fill
-                            className="object-contain p-1"
-                          />
+                          <div
+                            className={`relative w-24 h-24 md:w-32 md:h-32 p-3 md:p-4 rounded-xl border-2 transition-all duration-200 ${
+                              selectedHelmet === helmet.id
+                                ? "border-emerald-400 bg-gradient-to-br from-emerald-900/30 to-cyan-900/30 shadow-lg shadow-emerald-500/25"
+                                : "border-slate-600 bg-gradient-to-br from-slate-800 to-slate-700 hover:border-slate-500"
+                            }`}
+                          >
+                            <Image
+                              src={helmet.preview}
+                              alt={helmet.name}
+                              fill
+                              className="object-contain p-1"
+                            />
 
-                          {/* Selected indicator */}
-                          {selectedHelmet === helmet.id && (
-                            <div className="absolute -top-2 -right-2 w-6 h-6 bg-emerald-400 rounded-full flex items-center justify-center z-10 shadow-lg">
-                              <svg
-                                className="w-4 h-4 text-slate-900"
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                              >
-                                <path
-                                  fillRule="evenodd"
-                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                  clipRule="evenodd"
-                                />
-                              </svg>
-                            </div>
-                          )}
+                            {/* Selected indicator */}
+                            {selectedHelmet === helmet.id && (
+                              <div className="absolute -top-2 -right-2 w-6 h-6 bg-emerald-400 rounded-full flex items-center justify-center z-10 shadow-lg">
+                                <svg
+                                  className="w-4 h-4 text-slate-900"
+                                  fill="currentColor"
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path
+                                    fillRule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clipRule="evenodd"
+                                  />
+                                </svg>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Helmet name */}
+                          <p
+                            className={`text-center text-xs mt-2 px-1 transition-colors duration-200 ${
+                              selectedHelmet === helmet.id
+                                ? "text-emerald-300 font-medium"
+                                : "text-slate-400"
+                            }`}
+                          >
+                            {helmet.name}
+                          </p>
                         </div>
-
-                        {/* Helmet name */}
-                        <p
-                          className={`text-center text-xs mt-2 px-1 transition-colors duration-200 ${
-                            selectedHelmet === helmet.id
-                              ? "text-emerald-300 font-medium"
-                              : "text-slate-400"
-                          }`}
-                        >
-                          {helmet.name}
-                        </p>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
 
                   {/* Scroll indicator */}
