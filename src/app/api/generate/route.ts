@@ -8,10 +8,15 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const file = formData.get("image") as File;
-    const selectedHelmet = formData.get("helmet") as string || "helmet.png";
+    const selectedHelmet = (formData.get("helmet") as string) || "helmet.png";
 
     // Validate helmet selection
-    const validHelmets = ["helmet.png", "helmet2.png"];
+    const validHelmets = [
+      "helmet.png",
+      "helmet2.png",
+      "helmet3.png",
+      "helmet4.png",
+    ];
     if (!validHelmets.includes(selectedHelmet)) {
       return NextResponse.json(
         { error: "Invalid helmet selection" },

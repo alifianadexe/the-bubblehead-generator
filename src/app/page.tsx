@@ -11,11 +11,16 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [selectedHelmet, setSelectedHelmet] = useState<string>("helmet.png");
-  const [showHelmetModal, setShowHelmetModal] = useState(false);
 
   const helmetOptions = [
-    { id: "helmet.png", name: "Classic Space Helmet", preview: "/helmet.png" },
-    { id: "helmet2.png", name: "Advanced Space Helmet", preview: "/helmet2.png" },
+    { id: "helmet.png", name: "Classic", preview: "/helmet.png" },
+    {
+      id: "helmet2.png",
+      name: "Advanced",
+      preview: "/helmet2.png",
+    },
+    { id: "helmet3.png", name: "Elite", preview: "/helmet3.png" },
+    { id: "helmet4.png", name: "Modern", preview: "/helmet4.png" },
   ];
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -464,32 +469,78 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Helmet Preview */}
+              {/* Helmet Selection Carousel */}
               <div className="mt-12 pt-8 border-t border-slate-700">
-                <h3 className="text-lg font-semibold text-slate-200 mb-4 text-center">
-                  Selected helmet design (click to change):
+                <h3 className="text-lg font-semibold text-slate-200 mb-6 text-center">
+                  Choose Your Helmet Design:
                 </h3>
-                <div className="flex justify-center">
-                  <div 
-                    className="relative w-32 h-32 p-4 bg-gradient-to-br from-slate-800 to-slate-700 rounded-xl border border-slate-600 cursor-pointer hover:border-emerald-400 transition-colors"
-                    onClick={() => setShowHelmetModal(true)}
-                  >
-                    <Image
-                      src={`/${selectedHelmet}`}
-                      alt="Selected space helmet design"
-                      fill
-                      className="object-contain p-2"
-                    />
-                    <div className="absolute inset-0 bg-black/0 hover:bg-black/10 rounded-xl transition-all duration-200 flex items-center justify-center opacity-0 hover:opacity-100">
-                      <div className="bg-emerald-500 text-white px-2 py-1 rounded text-xs font-medium">
-                        Change
+
+                {/* Helmet Carousel */}
+                <div className="relative">
+                  <div className="flex gap-6 overflow-x-auto pb-4 px-4 pt-3 scrollbar-thin justify-center min-w-0">
+                    {helmetOptions.map((helmet) => (
+                      <div
+                        key={helmet.id}
+                        className={`flex-shrink-0 relative cursor-pointer transition-all duration-200 ${
+                          selectedHelmet === helmet.id
+                            ? "scale-105"
+                            : "hover:scale-102"
+                        }`}
+                        onClick={() => setSelectedHelmet(helmet.id)}
+                      >
+                        <div
+                          className={`relative w-24 h-24 md:w-32 md:h-32 p-3 md:p-4 rounded-xl border-2 transition-all duration-200 ${
+                            selectedHelmet === helmet.id
+                              ? "border-emerald-400 bg-gradient-to-br from-emerald-900/30 to-cyan-900/30 shadow-lg shadow-emerald-500/25"
+                              : "border-slate-600 bg-gradient-to-br from-slate-800 to-slate-700 hover:border-slate-500"
+                          }`}
+                        >
+                          <Image
+                            src={helmet.preview}
+                            alt={helmet.name}
+                            fill
+                            className="object-contain p-1"
+                          />
+
+                          {/* Selected indicator */}
+                          {selectedHelmet === helmet.id && (
+                            <div className="absolute -top-2 -right-2 w-6 h-6 bg-emerald-400 rounded-full flex items-center justify-center z-10 shadow-lg">
+                              <svg
+                                className="w-4 h-4 text-slate-900"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                  clipRule="evenodd"
+                                />
+                              </svg>
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Helmet name */}
+                        <p
+                          className={`text-center text-xs mt-2 px-1 transition-colors duration-200 ${
+                            selectedHelmet === helmet.id
+                              ? "text-emerald-300 font-medium"
+                              : "text-slate-400"
+                          }`}
+                        >
+                          {helmet.name}
+                        </p>
                       </div>
-                    </div>
+                    ))}
+                  </div>
+
+                  {/* Scroll indicator */}
+                  <div className="flex justify-center mt-2">
+                    <p className="text-slate-500 text-xs">
+                      ← Swipe to see more helmets →
+                    </p>
                   </div>
                 </div>
-                <p className="text-center text-slate-400 text-sm mt-2">
-                  {helmetOptions.find(h => h.id === selectedHelmet)?.name}
-                </p>
               </div>
             </div>
 
@@ -513,66 +564,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
-      {/* Helmet Selection Modal */}
-      {showHelmetModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-slate-800 rounded-2xl border border-slate-700 p-6 max-w-md w-full max-h-[80vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="text-xl font-semibold text-slate-100">
-                Choose Your Helmet
-              </h3>
-              <button
-                onClick={() => setShowHelmetModal(false)}
-                className="text-slate-400 hover:text-slate-200 transition-colors"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            
-            <div className="grid grid-cols-1 gap-4">
-              {helmetOptions.map((helmet) => (
-                <div
-                  key={helmet.id}
-                  className={`relative p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${
-                    selectedHelmet === helmet.id
-                      ? "border-emerald-400 bg-emerald-400/10"
-                      : "border-slate-600 hover:border-slate-500 bg-slate-700/50"
-                  }`}
-                  onClick={() => {
-                    setSelectedHelmet(helmet.id);
-                    setShowHelmetModal(false);
-                  }}
-                >
-                  <div className="flex items-center space-x-4">
-                    <div className="relative w-16 h-16 flex-shrink-0">
-                      <Image
-                        src={helmet.preview}
-                        alt={helmet.name}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <h4 className="text-slate-100 font-medium">{helmet.name}</h4>
-                      <p className="text-slate-400 text-sm">Click to select</p>
-                    </div>
-                    {selectedHelmet === helmet.id && (
-                      <div className="text-emerald-400">
-                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
