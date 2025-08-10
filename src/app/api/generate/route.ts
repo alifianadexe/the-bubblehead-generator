@@ -53,9 +53,9 @@ export async function POST(request: NextRequest) {
 
     const prompt = `
     Put the character from the profile picture inside the helmet image. 
-    If there is no visible body in the profile picture, please create an appropriate body based on the uploaded image. 
-    Make it look natural and well-integrated.
-    The final result should show the character wearing or inside the helmet.
+    If there is no visible body in the profile picture, please create an appropriate body based on the image I upload. The neck and shoulders should also match the body being created.
+    that fits with the character and the helmet. Make it look natural and well-integrated.
+    The final result must be the character wearing or inside the helmet.
     `;
 
     // Use OpenAI to edit the image
