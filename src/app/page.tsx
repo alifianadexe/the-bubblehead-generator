@@ -10,6 +10,13 @@ export default function Home() {
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [selectedHelmet, setSelectedHelmet] = useState<string>("helmet.png");
+  const [showHelmetModal, setShowHelmetModal] = useState(false);
+
+  const helmetOptions = [
+    { id: "helmet.png", name: "Classic Space Helmet", preview: "/helmet.png" },
+    { id: "helmet2.png", name: "Advanced Space Helmet", preview: "/helmet2.png" },
+  ];
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -34,6 +41,7 @@ export default function Home() {
     try {
       const formData = new FormData();
       formData.append("image", selectedFile);
+      formData.append("helmet", selectedHelmet);
 
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -459,18 +467,29 @@ export default function Home() {
               {/* Helmet Preview */}
               <div className="mt-12 pt-8 border-t border-slate-700">
                 <h3 className="text-lg font-semibold text-slate-200 mb-4 text-center">
-                  We&apos;ll combine your photo with this space helmet design:
+                  Selected helmet design (click to change):
                 </h3>
                 <div className="flex justify-center">
-                  <div className="relative w-32 h-32 p-4 bg-gradient-to-br from-slate-800 to-slate-700 rounded-xl border border-slate-600">
+                  <div 
+                    className="relative w-32 h-32 p-4 bg-gradient-to-br from-slate-800 to-slate-700 rounded-xl border border-slate-600 cursor-pointer hover:border-emerald-400 transition-colors"
+                    onClick={() => setShowHelmetModal(true)}
+                  >
                     <Image
-                      src="/helmet.png"
-                      alt="Space helmet design"
+                      src={`/${selectedHelmet}`}
+                      alt="Selected space helmet design"
                       fill
                       className="object-contain p-2"
                     />
+                    <div className="absolute inset-0 bg-black/0 hover:bg-black/10 rounded-xl transition-all duration-200 flex items-center justify-center opacity-0 hover:opacity-100">
+                      <div className="bg-emerald-500 text-white px-2 py-1 rounded text-xs font-medium">
+                        Change
+                      </div>
+                    </div>
                   </div>
                 </div>
+                <p className="text-center text-slate-400 text-sm mt-2">
+                  {helmetOptions.find(h => h.id === selectedHelmet)?.name}
+                </p>
               </div>
             </div>
 
@@ -494,6 +513,66 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Helmet Selection Modal */}
+      {showHelmetModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-slate-800 rounded-2xl border border-slate-700 p-6 max-w-md w-full max-h-[80vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-xl font-semibold text-slate-100">
+                Choose Your Helmet
+              </h3>
+              <button
+                onClick={() => setShowHelmetModal(false)}
+                className="text-slate-400 hover:text-slate-200 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            <div className="grid grid-cols-1 gap-4">
+              {helmetOptions.map((helmet) => (
+                <div
+                  key={helmet.id}
+                  className={`relative p-4 rounded-xl border-2 cursor-pointer transition-all duration-200 ${
+                    selectedHelmet === helmet.id
+                      ? "border-emerald-400 bg-emerald-400/10"
+                      : "border-slate-600 hover:border-slate-500 bg-slate-700/50"
+                  }`}
+                  onClick={() => {
+                    setSelectedHelmet(helmet.id);
+                    setShowHelmetModal(false);
+                  }}
+                >
+                  <div className="flex items-center space-x-4">
+                    <div className="relative w-16 h-16 flex-shrink-0">
+                      <Image
+                        src={helmet.preview}
+                        alt={helmet.name}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-slate-100 font-medium">{helmet.name}</h4>
+                      <p className="text-slate-400 text-sm">Click to select</p>
+                    </div>
+                    {selectedHelmet === helmet.id && (
+                      <div className="text-emerald-400">
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

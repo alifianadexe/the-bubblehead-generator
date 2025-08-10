@@ -8,6 +8,16 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const file = formData.get("image") as File;
+    const selectedHelmet = formData.get("helmet") as string || "helmet.png";
+
+    // Validate helmet selection
+    const validHelmets = ["helmet.png", "helmet2.png"];
+    if (!validHelmets.includes(selectedHelmet)) {
+      return NextResponse.json(
+        { error: "Invalid helmet selection" },
+        { status: 400 }
+      );
+    }
 
     if (!file) {
       return NextResponse.json(
@@ -28,12 +38,12 @@ export async function POST(request: NextRequest) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // Get helmet image from public directory
-    const helmetPath = path.join(process.cwd(), "public", "helmet.png");
+    // Get selected helmet image from public directory
+    const helmetPath = path.join(process.cwd(), "public", selectedHelmet);
 
     if (!fs.existsSync(helmetPath)) {
       return NextResponse.json(
-        { error: "Helmet image not found" },
+        { error: `Helmet image not found: ${selectedHelmet}` },
         { status: 500 }
       );
     }
@@ -41,13 +51,12 @@ export async function POST(request: NextRequest) {
     // Read helmet image to buffer
     const helmetBuffer = fs.readFileSync(helmetPath);
 
-    const imageFiles = [helmetBuffer, helmetPath];
     // Convert buffers to OpenAI File objects
     const userImage = await toFile(buffer, "user-image.png", {
       type: "image/png",
     });
 
-    const helmetImage = await toFile(helmetBuffer, "helmet.png", {
+    const helmetImage = await toFile(helmetBuffer, selectedHelmet, {
       type: "image/png",
     });
 
@@ -55,7 +64,8 @@ export async function POST(request: NextRequest) {
     Put the character from the profile picture inside the helmet image. 
     If there is no visible body in the profile picture, please create an appropriate body based on the image I upload. The neck and shoulders should also match the body being created.
     that fits with the character and the helmet. Make it look natural and well-integrated.
-    The final result must be the character wearing or inside the helmet.
+    about the logo on helmet ear, please make same thing like the template is a must. diferrent size on 3 bubble
+    The final result must be the character wearing or inside the helmet. ratio 1:1
     `;
 
     // Use OpenAI to edit the image
