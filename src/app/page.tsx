@@ -14,11 +14,6 @@ export default function Home() {
 
   const helmetOptions = [
     { id: "helmet.png", name: "Classic", preview: "/helmet.png" },
-    {
-      id: "helmet2.png",
-      name: "Advanced",
-      preview: "/helmet2.png",
-    },
     { id: "helmet3.png", name: "Elite", preview: "/helmet3.png" },
     { id: "helmet4.png", name: "Modern", preview: "/helmet4.png" },
   ];
